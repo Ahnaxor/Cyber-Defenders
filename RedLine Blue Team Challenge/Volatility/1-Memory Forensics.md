@@ -36,6 +36,34 @@ Việc sử dụng memory analysis có thể giúp bạn chuyển dữ liệu nh
 
 Dưới đây là một số tool miễn phí và được sử dụng cho memory analysis!
 
-1. Volatility
+1. [Volatility](https://www.volatilityfoundation.org/)
+   
+   Volatility có sẵn cho cả Windows và Linux.
+   
+   Nó sẽ cho bạn thông tin hữu ích như chương trình nào đang được chạy trên hệ thống, kết nối mạng và chương trình chứa mã độc.   Nó cũng hỗ trợ phân tích memory dump từ thiết bị Unix và một loạt các plugin đã được thiết kế bởi cộng đồng forensics.
+
+   Nên sử dụng Vol3 vì nó đã thiết lập sẵn cấu hình.
+   
+2. [Rekall](http://www.rekall-forensic.com/)
+   
+   Tương tự với Volatility.
+   
+3. [RedLine](https://fireeye.market/)
+
+   Nó chỉ sử dụng cho Windows, là một công cụ GUI.
+
+**_What Should I Look For In a Memory Dump?_**. 
+
+Có một câu nói là 'Malware can hide but it must run'. Các phần mềm độc hại sẽ cố gắng bị ẩn đi tại nơi mà người dùng ít sử dụng, tuy nhiên khi nó chạy thì vẫn là một running process trong thiết bị. Vì vậy, cách đơn giản nhất là nhìn tất cả các running process trên một thiết bị.
+
+Hãy xem tất cả các tên process mà không được chấp nhận trong process listing, khi mà bạn google thì nó có trả về kết quả nào không?
+
+Hoặc bạn cũng có thể xem các process trees, xem xem nó được tạo ở đâu, đâu là chương trình cha của nó, nó có phải là hành động mà bạn muốn thực hiện không?
+
+Một lời khuyên tốt nữa là nhìn vào những cái tên windows uy tín như 'svchost.exe', windows system process luôn được cài đặt parent process và run locations. Nếu như bạn thấy một chương trình chạy từ một vị trí bất thường thì nó có thể là một điều tra giá trị. 
+
+Các malicious process có thể được nhận dạng trong [hunt evil](https://sansgear.com/product/dfir-hunt-evil-poster/).
+
+Một cách khác là kiểm tra network connections, nó có phải là các unusual ports được kết nối không? Đặc biệt chú ý vào 'poker hand' - các cổng mà người tấn công cài đặt port như là '4444' hay '1234'.
 
 ### [References](https://www.varonis.com/blog/memory-forensics)
