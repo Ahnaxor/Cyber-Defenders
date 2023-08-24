@@ -71,3 +71,5 @@ Có khá ít command có thể sử dụng để phân tích các process đang 
 ### 3. Identifying Malicious Network Connections
 
 ### 4. Identifying Injected Code
+
+### [Reference](https://www.varonis.com/blog/how-to-use-volatility)
