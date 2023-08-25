@@ -70,6 +70,14 @@ Có khá ít command có thể sử dụng để phân tích các process đang 
 
 ### 3. Identifying Malicious Network Connections
 
+Khi RAM dump được captured thì các network connections tại thời điểm đó cũng bị captured và lưu lại. Nó có ích cho người ứng phó sự cố vì kết nối mạng độc hại đều có thể được định danh qua source port, destination IP, destincation port và process liên quan. 
+
+Để xem được các kết nối mạng liên kết với RAM dump sẽ phân tích ta sử dụng command:
+
+> python3 vol.py -f <filename> windows.netscan
+
+Những thông tin sau sẽ hiển thị sau khi sử dụng command
+
 ### 4. Identifying Injected Code
 
 ### [Reference](https://www.varonis.com/blog/how-to-use-volatility)
