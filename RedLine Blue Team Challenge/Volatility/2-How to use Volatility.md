@@ -28,7 +28,7 @@ Tìm kiếm những process đang chạy là một cách tốt để thử và x
 
 Có khá ít command có thể sử dụng để phân tích các process đang chạy, và đây là các lệnh được sử dụng:
 
-- `pslist`
++ `pslist`
   - Lệnh này sẽ cho ra một lượng lớn dữ liệu
     > python3 vol.py -f <filename> windows.pslist
 
@@ -51,7 +51,7 @@ Có khá ít command có thể sử dụng để phân tích các process đang 
   - Khi sử dụng command này, hãy chú ý vào tên process và xem có điều gì bất thường không. Bất cứ điều gì khiến bạn nghi ngờ,
   bạn đều có thể tra trên google để kiểm tra xem có hợp pháp hay cần chú ý thêm.
 
-- `pstree`
++ `pstree`
   
   `pstree` sẽ giúp chúng ta biết được process nào sinh ra process khác, điều này sẽ giúp chúng ta dễ dàng phát hiện hoạt động của một số process đáng ngờ.
   (Vì có thể chúng ta sẽ thấy quy trình nào được khởi chạy `cmd.exe` hoặc `powershell.exe` và xem nó có hợp lệ hay không)
@@ -76,7 +76,28 @@ Khi RAM dump được captured thì các network connections tại thời điể
 
 > python3 vol.py -f <filename> windows.netscan
 
-Những thông tin sau sẽ hiển thị sau khi sử dụng command
+Những thông tin sau sẽ hiển thị sau khi sử dụng command. 
+
+![image](https://github.com/shmily-2010/Cyber-Defenders/assets/112896213/6d6bf5d1-bac2-4be1-b8b7-939c5a9c45cf)
+
+Đầu ra của `netscan` bao gồm khoảng 10 cột:
+
++ **Offset:** Vị trí trong bộ nhớ
++ **Proto:** Network protocol được sử dụng bởi process
++ **LocalAddr:** source address của kết nối mạng
++ **LocalPort:** source port của kết nối mạng
++ **ForeignAdd:** destination address của kết nối mạng
++ **ForeignPort:** destination port của kết nối mạng
++ **State:** trạng thái kết nối mạng: ESTABLISHED (được thiết lập), CLOSED (đóng) và LISTENING (nghe)
++ **PID:** ID của process liên quan
++ **Owner:** process name liên quan
++ **Created:** thời gian kết nối bắt đầu
+
+Sau khi có được thông tin các địa chỉ IP mà máy tính kết nối với, hãy dùng [Symantec Site Review](http://sitereview.symantec.com/#/) để xác nhận hoạt động có liên quan đến câu lệnh độc hại hoặc máy chủ điều khiển đã biết.
+
+http://sitereview.symantec.com/#/
+
+Những IOC (Indicator of Compromise) này có thể được sử dụng để tìm kiếm các thiết bị khác có thể bị tổn hại và cần cách ly khỏi một phần của mạng.
 
 ### 4. Identifying Injected Code
 
