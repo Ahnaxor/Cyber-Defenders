@@ -101,4 +101,20 @@ Những IOC (Indicator of Compromise) này có thể được sử dụng để 
 
 ### 4. Identifying Injected Code
 
+Phần mềm độc hại thường được đóng gói để mã được viết sẽ không bị xáo trộn, phần mềm độc hại được viết sẽ không dễ dàng xác định và trong một thời gian ngắn có thể tìm được cách ngăn chặn nó.
+
+Phần mềm độc hại sẽ được 'wrapping' bởi một lớp mã, lớp mã này sẽ ẩn đi phần mềm độc hại và quá trình này còn được gọi là 'packing'.
+
+Và như vậy, phần mềm độc hại này sẽ cần phải tự giải nén ở thiết bị client, do đó memory sẽ lưu giữ quá trình đó. Và nó là nhiệm vụ của Volatility.
+
+Bạn có thể tìm hiểu về khái niệm này [ở đây](https://www.varonis.com/blog/x64dbg-unpack-malware?hsLang=en). Nói ngắn gọn, để có thể tự giải nén, phần mềm độc hại này sẽ cần phải tạo một chương trình con và tiêm phần mềm độc hại đã được giải nén vào quy trình con này.
+
+- `malfind`:
+  + Để tìm được injected code, chúng ta cần sử dụng `malfind`. Qua đó, Volatility sẽ hiện thị danh sách các hoạt động đáng ngờ dựa vào header được hiển thị trong hex. Một số mã dù không phải injected code cũng có thể vẫn sẽ được hiển thị vì quyền và assembly code.
+  + VD về `malfind`:
+    ![image](https://github.com/shmily-2010/Cyber-Defenders/assets/112896213/c60b2750-5ad5-416f-a1a3-ac27423a49a0)
+  + câu lệnh:
+    > python3 vol.py -f MemoryDump.mem windows.malfind
+- `procdump`:
+
 ### [Reference](https://www.varonis.com/blog/how-to-use-volatility)
